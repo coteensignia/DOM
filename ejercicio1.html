@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 1</title>
+</head>
+
+<body>
+    <div>
+        <div style="width: 40%;margin: 0 auto">
+            <h2>
+                Escríbenos !!!
+            </h2>
+            <div class="resultado" style="color:green;font-style: italic">
+            </div>
+            <form id="formulario">
+                <div>
+                    <div style="display: flex;flex-direction: column;">
+                        <label>
+                            Nombre completo
+                        </label>
+                        <input id="nombre" type="text">
+                        <p class="errorNombre" style="color:red;font-style: italic;"></p>
+                    </div>
+                    <div style="display: flex;flex-direction: column;">
+                        <label>
+                            Asunto
+                        </label>
+                        <input id="asunto" type="text">
+                        <p class="errorAsunto" style="color:red;font-style: italic;"></p>
+                    </div>
+                </div>
+                <div style="display: flex;flex-direction: column;">
+                    <label>
+                        Mensaje
+                    </label>
+                    <textarea id="mensaje"></textarea>
+                    <p class="errorMensaje" style="color:red;font-style: italic;"></p>
+                </div>
+                <div>
+                    <button id="botton" type="submit">
+                        Envíar mensaje
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        //tomar input
+        const nombre = document.querySelector("#nombre");
+        const asunto = document.querySelector("#asunto");
+        const mensaje = document.querySelector("#mensaje");
+        const errorNombre = document.querySelector(".errorNombre");
+        const errorAsunto = document.querySelector(".errorAsunto");
+        const errorMensaje = document.querySelector(".errorMensaje");
+        const btn = document.querySelector("#botton");
+        const resultado = document.querySelector(".resultado");
+        //prevenir
+        btn.addEventListener('click',function (event) {
+            event.preventDefault();
+            let nombreValue = nombre.value
+            let asuntoValue = asunto.value
+            let mensajeValue = mensaje.value
+            errorNombre.innerHTML = ""
+            errorAsunto.innerHTML = ""
+            errorMensaje.innerHTML = ""
+            resultado.innerHTML = ""
+
+
+            if (!validador(nombreValue)) {
+                errorNombre.innerHTML = "El nombre es requerido"
+            } 
+
+            if (!validador(asuntoValue)) {
+                errorAsunto.innerHTML = "El asunto es requerido"
+            } 
+
+            if (!validador(mensajeValue)) {
+                errorMensaje.innerHTML = "El mensaje es requerido"
+            } 
+            
+            if (validador(nombreValue)&&validador(asuntoValue)&&validador(mensajeValue)) {
+                resultado.innerHTML= "Mensaje enviado con éxito!!!"
+            }
+            
+            
+        })
+        //regex     
+        function validador(prueba) {
+            return /^[A-Za-z\s]+$/i.test(prueba)
+            
+        }
+        
+
+
+         
+    
+    </script>
+</body>
+
+</html>
